@@ -17,12 +17,13 @@
     </form>
 
     <script>
-        var notaum = parseInt(document.querySelector("#notaum").value);
-        var notadois = parseInt(document.querySelector("#notadois").value);
+        
         var btnCalcular = document.querySelector("#btnCalcular");
 
         btnCalcular.addEventListener("click", function(event){
             event.preventDefault();
+            var notaum = parseInt(document.querySelector("#notaum").value);
+            var notadois = parseInt(document.querySelector("#notadois").value);
 
             var notasoma = (notaum + notadois)/2;
 
