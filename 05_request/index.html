@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Ex 5 - Request</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <table id="tabela">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Título</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+
+        <tbody></tbody>
+    </table>
+
+    <script>
+        function sucesso() {
+            let personagens = JSON.parse(this.responseText);
+            console.log(personagens);
+            preencherTabela(personagens);
+        }
+
+        function erro(erro) {
+            console.log("Ocorreu um erro", erro)
+        }
+
+        var xhr = new XMLHttpRequest;
+        xhr.onload = sucesso;
+        xhr.onerror = erro;
+
+        xhr.open("GET", "https://salty-atoll-57329.herokuapp.com/personagens");
+        xhr.send();
+
+        let tabela = document.getElementById("tabela");
+
+        function preencherTabela(personagens) {
+            personagens.forEach(per => {
+                let linha = document.createElement("tr");
+
+                let colunaNomePers = document.createElement("td");
+                colunaNomePers.innerText = per.nome;
+                linha.appendChild(colunaNomePers);
+
+                let colunaLancamento = document.createElement("td");
+                colunaLancamento.innerText = per.lancamento;
+                linha.appendChild(colunaLancamento);
+
+                let colunaImg = document.createElement("td");
+                colunaImg.innerHTML = "<img src='" + per.urlImagem + "' style='height: 60px;width: 100px;margin=auto'>";
+                linha.appendChild(colunaImg);
+
+                tabela.appendChild(linha);
+            });
+        }
+    </script>
+</body>
+
+</html>

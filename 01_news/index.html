@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ex 1 - News</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="news">
+            <h1 class="news__title" id="formTitle">Se inscreva para receber mais informações</h1>
+            <form action="" class="news__form">
+                <div class="news__form-group">
+                    <label for="inputEmail" class="news__label">
+                        Email
+                    </label>
+                    <input type="email" class="news__input" id="inputEmail" placeholder="email@exemplo.com.br">
+                </div>
+                <div class="news__form-group">
+                    <button class="button news__button" id="buttonSend" disabled>Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        var inputEmail = document.querySelector("#inputEmail");
+        var buttonSend = document.querySelector("#buttonSend");
+
+        inputEmail.addEventListener("keyup", function (event) {
+            event.preventDefault();
+
+            if (inputEmail.value.length > 6 && inputEmail.value.includes("@", ".") == true) {
+                buttonSend.style.backgroundColor = "#ECDDF3";
+                buttonSend.disabled = false;
+                console.log("Sucesso")
+            } else {
+                buttonSend.style.backgroundColor = "red";
+                buttonSend.disabled = true;
+                console.log("Falha");
+            }
+        });
+    </script>
+</body>
+
+</html>

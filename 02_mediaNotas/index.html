@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ex 2 - Media notas</title>
+</head>
+
+<body>
+    <form>
+        <input type="text" id="inputNota1" placeholder="Nota 1" required>
+        <input type="text" id="inputNota2" placeholder="Nota 2" required>
+        <button type="submit" id="button">Calcular média</button>
+    </form>
+
+    <script>
+        var button = document.querySelector("#button");
+
+        button.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            var inputNota1 = parseInt(document.querySelector("#inputNota1").value);
+            var inputNota2 = parseInt(document.querySelector("#inputNota2").value);
+
+            var notasoma = (inputNota1 + inputNota2) / 2;
+
+            console.log(notasoma);
+        })
+    </script>
+</body>
+
+</html>

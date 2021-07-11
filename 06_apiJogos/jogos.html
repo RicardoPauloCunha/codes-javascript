@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex 6 - API Jogos</title>
+</head>
+
+<body>
+    <h1>Lista de Jogos</h1>
+
+    <table id="tabela">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Imagem</th>
+                <th>Descrição</th>
+                <th>Estudio</th>
+            </tr>
+        </thead>
+    </table>
+
+    <h2>Buscar jogo</h2>
+
+    <form id="form">
+        <input type="text" placeholder="Id do jogo buscado:" id="inputId">
+        <button type="submit" id="button">Buscar</button>
+    </form>
+
+    <div id="jogo-encontrado">
+
+    </div>
+
+    <script>
+        const URL = "https://5c9cbcf13be4e30014a7d268.mockapi.io/hroads/jogos";
+
+        function carregarlistajogos() {
+            fetch(URL)
+                .then(resposta => resposta.json())
+                .then(data => preencherTabela(data))
+                .catch(erro => console.error('erro', erro));
+        }
+
+        carregarlistajogos();
+
+        let tabela = document.querySelector("#tabela");
+
+        function preencherTabela(Jogos) {
+            Jogos.forEach(jogo => {
+                let linhaTabela = document.createElement("tr");
+
+                let idColuna = document.createElement("td");
+                idColuna.innerText = jogo.id;
+                linhaTabela.appendChild(idColuna);
+
+                let nomeColuna = document.createElement("td");
+                nomeColuna.innerText = jogo.nome;
+                linhaTabela.appendChild(nomeColuna);
+
+                let imagemColuna = document.createElement("td");
+                imagemColuna.innerHTML = "<img src='" + jogo.imagem + "' style='heigth:60px; width:100px'/>"
+                linhaTabela.appendChild(imagemColuna);
+
+                let descricaoColuna = document.createElement("td");
+                descricaoColuna.innerText = jogo.descricao;
+                linhaTabela.appendChild(descricaoColuna);
+
+                let estudioColuna = document.createElement("td");
+                estudioColuna.innerText = jogo.estudioId;
+                linhaTabela.appendChild(estudioColuna);
+
+                tabela.appendChild(linhaTabela);
+            });
+        }
+
+        let listaJogos = [];
+
+        function listaDeJogos() {
+            fetch(URL)
+                .then(resposta => resposta.json())
+                .then(data => preencherlista(data))
+                .catch(erro => console.error('erro', erro));
+        }
+
+        function preencherlista(jogos) {
+            listaJogos = jogos;
+        }
+
+        listaDeJogos();
+
+        console.log(listaJogos);
+
+        var button = document.querySelector("#button");
+
+        button.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            let inputIdValue = parseInt(document.querySelector("#inputId").value);
+            let jogoSelecionado = listaJogos.find(jogo => jogo.id == inputIdValue);
+
+            var form = document.querySelector("#form");
+            form.reset();
+
+            console.log(jogoSelecionado);
+        });
+    </script>
+</body>
+
+</html>

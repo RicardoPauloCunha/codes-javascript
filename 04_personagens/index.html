@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Ex 4 - Personagens</title>
+</head>
+
+<body>
+    <script>
+        let personagens = [{
+            nome: "Capitão Cometa",
+            dataAparicao: 1951,
+            editora: "DC"
+        }, {
+            nome: "Lanterna Verde",
+            dataAparicao: 1940,
+            editora: "DC"
+        }, {
+            nome: "Ciborgue",
+            dataAparicao: 1980,
+            editora: "DC"
+        }, {
+            nome: "Homem Aranha",
+            dataAparicao: 1962,
+            editora: "Marvel"
+        }, {
+            nome: "Homem de Ferro",
+            dataAparicao: 1963,
+            editora: "Marvel"
+        }, {
+            nome: "Capitão América",
+            dataAparicao: 1940,
+            editora: "Marvel"
+        }];
+
+        let personagensSelecionados = [];
+
+        // 1.	Liste somente os personagens cuja editora seja Marvel;
+        personagensSelecionados = personagens.filter(per => per.editora == "Marvel");
+        console.log("Lista de personagens cuja editora seja Marvel:");
+        console.log(personagensSelecionados);
+
+        // 2.	Liste somente os personagem cuja data de Aparição seja superior a 1950;
+        personagensSelecionados = personagens.filter(per => per.dataAparicao > 1950);
+        console.log("Lista de personagens cuja data de aparição seja superior a 1950:");
+        console.log(personagensSelecionados);
+
+        // 3.	Traga somente os nomes dos personagens;
+        personagensSelecionados = personagens.map(per => per.nome);
+        console.log("Lista dos nomes dos personagens:");
+        console.log(personagensSelecionados)
+
+        // 4.	Adicione mais um personagem chamado Capitã Marvel, data de Aparição 1977 e editora Marvel;
+        novoPersonagem = {
+            nome: "Capitão Marvel",
+            dataAparicao: 1977,
+            editora: "Marvel"
+        };
+        personagensSelecionados = personagens.push(novoPersonagem);
+        console.log("Lista de personagens:");
+        console.log(personagensSelecionados);
+
+        // 5.	Mostre a quantidade de personagens da Marvel que possuem na lista
+        personagensSelecionados = personagens.filter(per => per.editora == "Marvel");
+        console.log("Quantidade de personagens da Marvel:");
+        console.log(personagensSelecionados);
+
+        // Desafio 1.	Some a idade de todos os personagens;
+        var data = new Date()
+        const anoAtual = data.getFullYear();
+        let soma = personagens.map(per => per.dataAparicao).reduce((total, item) => total + (anoAtual - item), 0);
+        console.log("Soma da Idade de todos os personagens:");
+        console.log(soma);
+    </script>
+</body>
+
+</html>
